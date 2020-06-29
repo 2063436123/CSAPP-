@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C++ Launch (GDB)", // 调试时程序员看到的名字
+            "preLaunchTask": "Build", // launch之前会运行的任务，这个名字一定要跟tasks.json中的任务名一致
+            "type": "cppdbg", // 经测试，不可删除
+            "request": "launch", // 经测试，不可删除
+            "program": "${workspaceFolder}/exes/${fileBasenameNoExtension}.exe", //运行当前打开文件的目录下exes文件夹中名字和当前文件相同，但扩展名为exe的程序
+            "args": [], // 运行程序是默认是没有参数的
+            "stopAtEntry": false, // 选为true则会在打开控制台后停滞，暂时不执行程序
+            "cwd": "${workspaceFolder}", // 当前工作路径：当前文件所在的工作空间
+            "environment": [],
+            "externalConsole": false, // 是否使用外部控制台，
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe", //调试器路径
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
+// https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations
+// author: huihut
+// Available variables which can be used inside of strings.
+// ${workspaceRoot}: the root folder of the team        
+// ${file}: the current opened file                     
+// ${fileBasename}: the current opened file's basename 
+// ${fileDirname}: the current opened file's dirname    
+// ${fileExtname}: the current opened file's extension  
+// ${cwd}: the current working directory of the spawned process
