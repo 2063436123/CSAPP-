@@ -1,8 +1,33 @@
 #include <string>
 #include <stdio.h>
+#include <iostream>
+#include <functional>
+using std::cout;
+void otherdef(int &t)
+{
+    cout << "lvalue\n";
+}
+
+void otherdef(const int &t)
+{
+    cout << "rvalue\n";
+}
+
+template <typename T>
+void function(T &&t)
+{
+    otherdef(std::forward<T>(t));
+}
+
 int main()
 {
-    printf("%.18f %.18f %.18f %d \n", 0.1, 0.2, 0.3, 0.1 + 0.2 == 0.3);
-    printf("%.8X %.8X %.8X\n", 0x00AA1390,0x00AA45B0, (0x00AA1390 || 0x00AA45B0));
-    printf("%5f", 234.0);
+    function(5);
+    int  x = 1;
+    function(x);
+
+    int n = 10;
+    int &num = n;
+    function(num); // T 为 int&
+    int &&num2 = 11;
+    function(num2); // T 为 int &&
 }
